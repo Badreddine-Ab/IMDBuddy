@@ -1,16 +1,29 @@
-import { View, Text, StyleSheet, Image, TouchableNativeFeedback,TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import Colors from "../constants/Colors";
 import { Entypo } from "@expo/vector-icons";
 import Fonts from "../constants/Fonts";
 import Images from "../constants/Images";
-import { Ionicons } from '@expo/vector-icons';
-import React, {useState} from "react";
+import { Ionicons } from "@expo/vector-icons";
+import React, { useState } from "react";
+import { getPoster } from "../services/MovieService";
 
-const MovieCard = () => {
-    const [liked, setLiked] = useState(false);
+const MovieCard = ({ title, poster, language, voteCount }) => {
+  const [liked, setLiked] = useState(false);
   return (
     <TouchableOpacity>
-      <View style={Styles.container}>
+      <ImageBackground
+        style={Styles.container}
+        source={{ uri: getPoster(poster) }}
+      >
+        {console.log(getPoster(poster))}
         <View style={Styles.imdbContainer}>
           <Image
             source={Images.IMDB}
@@ -19,21 +32,22 @@ const MovieCard = () => {
           />
           <Text style={Styles.imdbRating}>9.4</Text>
         </View>
-        <TouchableNativeFeedback onPress={()=> setLiked(!liked)}>
-        <Ionicons
-              name={liked ? "heart" : "heart-outline"}
-              size={24}
-              color={liked ? Colors.HEART : Colors.WHITE}
-              style={{position:'absolute', bottom:10, left:10}}
-            />
+        <TouchableNativeFeedback onPress={() => setLiked(!liked)}>
+          <Ionicons
+            name={liked ? "heart" : "heart-outline"}
+            size={24}
+            color={liked ? Colors.HEART : Colors.WHITE}
+            style={{ position: "absolute", bottom: 10, left: 10 }}
+          />
         </TouchableNativeFeedback>
-      </View>
+      </ImageBackground>
+
       <View>
         <Text style={Styles.movieTitle} numberOfLines={3}>
-          URI - SURGICAL STRIKE
+          {title}
         </Text>
         <View style={Styles.movieSubTitleContainer}>
-          <Text style={Styles.rowAndCenter}>Morroco | (U/A)</Text>
+          <Text style={Styles.rowAndCenter}>{language}</Text>
           <View>
             <Entypo
               name="heart"
@@ -41,7 +55,7 @@ const MovieCard = () => {
               color={Colors.HEART}
               style={{ marginRight: 5 }}
             />
-            <Text style={Styles.movieSubTitle}>90%</Text>
+            <Text style={Styles.movieSubTitle}>{voteCount}</Text>
           </View>
         </View>
       </View>
@@ -51,7 +65,6 @@ const MovieCard = () => {
 
 const Styles = StyleSheet.create({
   container: {
-    backgroundColor:Colors.ACTIVE,
     height: 340,
     width: 230,
     borderRadius: 12,

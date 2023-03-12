@@ -1,5 +1,4 @@
-import { View, Text, StyleSheet, Image, TouchableNativeFeedback } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { View, Text, StyleSheet, Image, TouchableNativeFeedback,TouchableOpacity } from "react-native";
 import Colors from "../constants/Colors";
 import { Entypo } from "@expo/vector-icons";
 import Fonts from "../constants/Fonts";

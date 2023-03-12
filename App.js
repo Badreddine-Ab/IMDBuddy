@@ -1,15 +1,29 @@
 import { View, Text } from "react-native";
-
+import { useState, useEffect } from "react";
+import { fetchMovies } from "./Api/index";
+import { TextInput } from "react-native-paper";
 export default function App() {
+  const [movies, setMovies] = useState([]);
+  const [searchMovie, setSearchMovie] = useState('')
+  useEffect(() => {
+    const getMovies = async () => setMovies(await fetchMovies(searchMovie));
+    getMovies()
+  }, []);
   return (
-    <View
+    <>
+    {Object.keys(movies).length > 0 && (
+   <View>
+    <TextInput 
+      placeholder="Search your movie here"
+      value={searchMovie}
+      onChange = {(text)=> setSearchMovie(text)}
       style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        marginTop:35,
       }}
-    >
-      <Text>Universal React with Expo</Text>
-    </View>
+      left={<TextInput.Icon name="magnify" />}
+    />
+   </View>
+   )}
+   </>
   );
 }

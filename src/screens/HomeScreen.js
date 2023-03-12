@@ -1,11 +1,18 @@
-import { View, Text, ScrollView, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { View, Text, ScrollView, StyleSheet, FlatList } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import COLORS from "../constants/Colors";
 import FONTS from "../constants/Fonts";
+import GenreCard from "../components/GenreCard";
+import ItemSeparator from "../components/itemSeperator";
+
+const Genres = ["All", "Action", "Comedy", "Romance", "Horror", "Sci-Fi"];
+
 const HomeScreen = () => {
+  const [activeGenre, setActiveGenre] = useState("all");
+
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar
         style="auto"
         translucent={false}
@@ -15,7 +22,25 @@ const HomeScreen = () => {
         <Text style={styles.headerTitle}>Now Showing</Text>
         <Text style={styles.headerSubTitle}>VIEW ALL</Text>
       </View>
-    </ScrollView>
+      <View style={styles.genreListContainer}>
+        <FlatList
+          data={Genres}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item) => item}
+          ItemSeparatorComponent={() => <ItemSeparator width={20} />}
+          ListHeaderComponent={() => <ItemSeparator width={20} />}
+          ListFooterComponent={() => <ItemSeparator width={20} />}
+          renderItem={({ item }) => (
+            <GenreCard
+              genreName={item}
+              active={item === activeGenre ? true : false}
+              onPress={(genreName)=> setActiveGenre(genreName)}
+            />
+          )}
+        />
+      </View>
+    </View>
   );
 };
 
@@ -39,6 +64,9 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: COLORS.ACTIVE,
     fontFamily: FONTS.BOLD,
+  },
+  genreListContainer: {
+    paddingVertical: 10,
   },
 });
 

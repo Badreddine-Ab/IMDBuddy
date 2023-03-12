@@ -5,6 +5,8 @@ import COLORS from "../constants/Colors";
 import FONTS from "../constants/Fonts";
 import GenreCard from "../components/GenreCard";
 import ItemSeparator from "../components/itemSeperator";
+import MovieCard from "../components/MovieCard"
+
 
 const Genres = ["All", "Action", "Comedy", "Romance", "Horror", "Sci-Fi"];
 
@@ -35,9 +37,21 @@ const HomeScreen = () => {
             <GenreCard
               genreName={item}
               active={item === activeGenre ? true : false}
-              onPress={(genreName)=> setActiveGenre(genreName)}
+              onPress={(genreName) => setActiveGenre(genreName)}
             />
           )}
+        />
+      </View>
+      <View>
+        <FlatList
+          data={Genres}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item) => item}
+          ItemSeparatorComponent={() => <ItemSeparator width={20} />}
+          ListHeaderComponent={() => <ItemSeparator width={20} />}
+          ListFooterComponent={() => <ItemSeparator width={20} />}
+          renderItem={({ item }) => <MovieCard/>}
         />
       </View>
     </View>

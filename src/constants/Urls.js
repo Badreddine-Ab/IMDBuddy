@@ -1,7 +1,10 @@
+const config = require("../../package.json");
+
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p";
+const YOUTUBE_BASE_URL = "https://www.youtube.com/watch";
 
-const TMDB_API_KEY = "24fc26671a1075eb50ca5e5a813169e2";
+const TMDB_API_KEY = config.projectConfig.apiKey;
 
 const ENDPOINTS = {
   NOW_PLAYING_MOVIES: "/movie/now_playing",
@@ -10,4 +13,11 @@ const ENDPOINTS = {
   MOVIE: "/movie",
 };
 
-export { TMDB_API_KEY, TMDB_BASE_URL, TMDB_IMAGE_BASE_URL, ENDPOINTS };
+const APPEND_TO_RESPONSE = {
+  VIDEOS: "videos",
+  CREDITS: "credits",
+  RECOMMENDATIONS: "recommendations",
+  SIMILAR: "similar",
+};
+
+export { TMDB_API_KEY, TMDB_BASE_URL, TMDB_IMAGE_BASE_URL, ENDPOINTS , APPEND_TO_RESPONSE,YOUTUBE_BASE_URL};

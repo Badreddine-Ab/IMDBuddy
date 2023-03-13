@@ -23,11 +23,12 @@ const MovieCard = ({
   voteAverage,
   size,
   heartLess,
+  onPress
 }) => {
   const [liked, setLiked] = useState(false);
   const [voteCountValue, setVoteCountValue] = useState(voteCount);
   return (
-    <TouchableOpacity activeOpacity={0.8}>
+    <TouchableOpacity activeOpacity={0.8} onPress={onPress} >
       <ImageBackground
         style={{ ...Styles.container, width: 230 * size, height: 340 * size }}
         imageStyle={{ borderRadius: 12 }}

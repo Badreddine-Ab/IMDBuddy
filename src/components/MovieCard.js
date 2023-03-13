@@ -23,7 +23,6 @@ const MovieCard = ({ title, poster, language, voteCount }) => {
         style={Styles.container}
         source={{ uri: getPoster(poster) }}
       >
-        {console.log(getPoster(poster))}
         <View style={Styles.imdbContainer}>
           <Image
             source={Images.IMDB}

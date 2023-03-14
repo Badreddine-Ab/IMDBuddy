@@ -1,12 +1,21 @@
 {
   "expo": {
-    "name": "blank",
-    "slug": "blank",
+    "name": "IMDBuddy",
+    "slug": "Your movie buddy",
     "version": "1.0.0",
     "platforms": [
       "ios",
       "android",
       "web"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "7868c8d4-53d2-4ab7-ac06-fc8639bd6eb5"
+      }
+    },
+    "owner": "badreddinedev",
+    "android": {
+      "package": "com.badreddinedev.blank"
+    }
   }
 }

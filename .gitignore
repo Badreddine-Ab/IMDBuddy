@@ -65,3 +65,9 @@ buck-out/
 # Expo
 .expo/*
 web-build/
+
+package.json
+!package.json
+package-lock.json
+projectConfig/
+

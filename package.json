@@ -33,6 +33,6 @@
   "private": true,
   "name": "imdbuddy",
   "projectConfig": {
-    "apiKey": "24fc26671a1075eb50ca5e5a813169e2"
+    "apiKey": "< YOUR TMDB API KEY>"
   }
 }
